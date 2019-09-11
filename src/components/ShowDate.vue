@@ -1,6 +1,6 @@
 <template>
     <p id="ShowDate">
-        今日は{{ year }}年{{ month }}月{{ day }}日{{ week }}曜日{{ seconds }}秒です。
+        今日は{{ year }}年{{ month }}月{{ day }}日{{ week }}曜日です。
     </p>
 
 </template>
@@ -27,15 +27,16 @@
             month() {
                 return zeroPadding(this.date.getMonth() + 1, 2)
             },
+            week() {
+                const WeekChars = [ "日", "月", "火", "水", "木", "金", "土" ];
+                return WeekChars[this.date.getDay()]
+            },
             day() {
                 return zeroPadding(this.date.getDate(), 2)
             },
-            week() {
-                return zeroPadding(this.date.getDay(), 2)
-            },
-            seconds() {
-                return zeroPadding(this.date.getSeconds(), 2)
-            },
+            // seconds() {
+            //     return zeroPadding(this.date.getSeconds(), 2)
+            // },
         },
 
         mounted() {
