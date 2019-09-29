@@ -27,6 +27,8 @@
 
 </template>
 
+
+
 <script>
 
     // Client ID and API key from the Developer Console
