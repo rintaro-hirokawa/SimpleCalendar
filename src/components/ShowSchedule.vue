@@ -167,7 +167,7 @@
     }
 
     .time{
-        font-size: 44px;
+        font-size: 45px;
 
     }
     .sign{
