@@ -1,27 +1,44 @@
+<head>
+    <link rel="stylesheet" type="text/css"  href="showschedule.css">
+</head>
+
+
+
+
 <template>
     <div id="ShowSchedule">
-        <div class='authentification'>
-            <h2>Simple Calendar</h2>
 
-            <button v-if='!authorized' @click="handleAuthClick">Sign In</button>
-            <button v-if='authorized' @click="handleSignoutClick">Sign Out</button>
-        </div>
-        <hr>
-        <button v-if='authorized' @click="getData">Get Data</button>
+        <button class="get" v-if='authorized' @click="getData">更新</button>
+
         <div class="item-container" v-if="authorized && items">
-            <h3>本日の予定</h3>
-
             <ul>
+
                 <li v-for="item in items" v-if="item.start.date">
-                    [終日]<b>{{item.summary}}</b>
+                    <p>[終日]<b>{{item.summary}}</b></p>
                 </li>
 
-                <li v-for="item in items" v-if="item.start.dateTime">
+
+
+                <li v-for="item in items" v-if="item.start.dateTime" >
 
                     [ {{ isoToTime(item.start.dateTime) }} ~ {{ isoToTime(item.end.dateTime) }} ] <b>{{ item.summary }}</b>
 
                 </li>
+
+                <div class="task">
+                    <div class="task_name column is-three-quarters">hanami</div>
+                    <div class="column">
+                        <p class="time">{{ isoToTime(item.start.dateTime)}}</p>
+                        <p class="time">{{ isoToTime(item.end.dateTime) }} </p>
+                    </div>
+                </div>
+
             </ul>
+        </div>
+        <div class='authentification'>
+
+            <button class="sign" v-if='!authorized' @click="handleAuthClick">ログイン</button>
+            <button class="sign" v-if='authorized' @click="handleSignoutClick">ログアウト</button>
         </div>
     </div>
 
@@ -133,5 +150,39 @@
 </script>
 
 <style scoped>
+
+
+
+.task{
+    background-color: #fbeefc;
+    border-left: 8px solid #c92ad2;
+    color: #c92ad2;
+    margin: 2em 0;
+    padding: 2em;
+
+}
+
+    .task_name{
+        font-size: 70px;
+    }
+
+    .time{
+        font-size: 35px;
+
+    }
+    .sign{
+        font-size:30px;
+        border-radius: 10px;
+        margin-top:650px;
+
+    }
+    .get{
+        font-size:30px;
+        float:left;
+
+        margin-top:650px;
+        border-radius: 10px;
+        margin-right :50px
+    }
 
 </style>

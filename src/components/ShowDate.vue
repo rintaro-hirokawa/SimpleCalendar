@@ -1,8 +1,10 @@
 <template>
-    <p id="ShowDate">
-        今日は{{ year }}年{{ month }}月{{ day }}日{{ week }}曜日です。
-    </p>
-
+    <div id="ShowDate">
+        <p><span class="mid1">{{ year }}年</span></p>
+    <p><span class="large">{{ month }}</span>月<span class="large">{{ day }}</span>日</p>
+        <p><span class="mid2">{{ week }}曜日</span></p>
+        <p><span class="mid3">{{hour}}:{{min}}</span></p>
+    </div>
 </template>
 
 <script>
@@ -34,9 +36,12 @@
             day() {
                 return zeroPadding(this.date.getDate(), 2)
             },
-            // seconds() {
-            //     return zeroPadding(this.date.getSeconds(), 2)
-            // },
+             hour() {
+                return zeroPadding(this.date.getHours(), 2)
+             },
+            min(){
+                return zeroPadding(this.date.getMinutes(), 2)
+            }
         },
 
         mounted() {
@@ -53,5 +58,26 @@
 </script>
 
 <style scoped>
+p{
+    font-size: 50px;
+    font-family: "Bookman Old Style";
+}
+.large {
+    font-size: 200px;
+}
 
+.mid1{
+    padding-left: 200px;
+
+}
+.mid2{
+    padding-left: 200px;
+
+
+}
+
+.mid3{
+    font-size:80px;
+    padding-left: 180px;
+}
 </style>
