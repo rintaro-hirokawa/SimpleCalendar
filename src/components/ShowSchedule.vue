@@ -1,33 +1,33 @@
 <template>
     <div id="ShowSchedule">
-
-
         <div class='authentification'>
             <button class="sign" v-if='!authorized' @click="handleAuthClick">ログイン</button>
             <button class="sign" v-if='authorized' @click="handleSignoutClick">ログアウト</button>
+            <button class="get" v-if='authorized' @click="getData">更新</button>
         </div>
 
-        <button class="get" v-if='authorized' @click="getData">更新</button>
-
         <div class="item-container" v-if="authorized && items">
+            <div v-for="item in items" v-if="item.start.date">
+                <div class="task_name a_task">
+                    {{ item.summary }}
+                </div>
+            </div>
 
-
-
-                <div v-for="item in items" v-if="item.start.dateTime"  class="task">
-                    <div class="task_name column is-three-quarters"><input type="checkbox" class="checkbox" value="1" checked="checked">{{ item.summary }}</div>
-                    <div class="time">
+            <div v-for="item in items" v-if="item.start.dateTime">
+                <div class="a_task columns">
+                    <div class="task_name column is-three-quarters">
+                        <!-- <input type="checkbox" class="checkbox" value="1" checked="checked">-->
+                        {{ item.summary }}
+                    </div>
+                    <div class="time column">
                         <p>{{ isoToTime(item.start.dateTime) }}</p>
                         <p>{{ isoToTime(item.end.dateTime) }}</p>
                     </div>
                 </div>
-           </div>
+            </div>
         </div>
-
     </div>
-
 </template>
-
-
 
 <script>
 
@@ -41,6 +41,8 @@
     const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
 
+
+
     export default {
         name: 'ShowSchedule',
 
@@ -50,7 +52,7 @@
                 authorized: false,
                 // isoDate: new RegExp('\\d{4}-\\d{2}-\\d{2}T(\\d{2}:\\d{2}):\\d{2}.+', 'g'),
                 items: null,
-                // timerObj: null,
+                timerObj: null,
             }
         },
 
@@ -60,7 +62,6 @@
         },
 
         methods: {
-
             isoToTime: function(isoExp) {
                 let isoRegExp = new RegExp('\\d{4}-\\d{2}-\\d{2}T(\\d{2}:\\d{2}):\\d{2}.+');
                 return isoExp.match(isoRegExp)[1]
@@ -73,7 +74,6 @@
 
             initClient: function () {
                 let vm = this;
-
                 vm.api.client.init({
                     apiKey: API_KEY,
                     clientId: CLIENT_ID,
@@ -85,8 +85,10 @@
             handleAuthClick: function (event) {
                 Promise.resolve(this.api.auth2.getAuthInstance().signIn())
                     .then(_ => {
-                        this.authorized = true;
+                        this.authorized = true
                     });
+                this.getData();
+                this.timerObj = setInterval(this.getData, 5000)
             },
 
 
@@ -94,21 +96,18 @@
                 Promise.resolve(this.api.auth2.getAuthInstance().signOut())
                     .then(_ => {
                         this.authorized = false;
+                        clearInterval(this.timerObj)
                     });
             },
 
             getData: function() {
                 let vm = this;
-
                 let tMax = new Date();
                 let tMin = new Date();
-
-
                 tMin.setHours(0);
                 tMin.setMinutes(0);
                 tMin.setSeconds(0);
                 tMin.setMilliseconds(0);
-
                 tMax.setHours(0);
                 tMax.setMinutes(0);
                 tMax.setSeconds(0);
@@ -127,39 +126,35 @@
                     this.items = response.result.items;
                 });
             },
-
         }
     }
 </script>
 
 <style scoped>
-
-
-
-    .task{
-      margin:50px;
-      
-
+    .a_task{
+        margin:50px;
+        /*padding: 0.5em 1em;*/
+        color: #232323;
+        background: #fff8e8;
+        border-left: solid 10px #ffc06e;
+        height: 250px;
     }
 
     .task_name{
         font-size: 50px;
-        float:left;
-
-
+        /*float:left;*/
+        vertical-align: middle;
     }
 
     .time{
         font-size: 33px;
-        float:right;
-
-
-
+        /*float:right;*/
     }
+
     .item-container{
         margin:10px;
-
     }
+
     .sign{
         display: inline-block;
         padding: 0.5em 1em;
@@ -171,12 +166,6 @@
         border-style: dotted;
         margin:3px;
     }
-
-
-
-
-
-
 
     .get{
         display: inline-block;
@@ -194,7 +183,5 @@
         display: table-cell;
         margin:10px;
         padding:3px;
-
     }
-
 </style>

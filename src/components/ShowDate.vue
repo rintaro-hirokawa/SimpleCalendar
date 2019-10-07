@@ -37,9 +37,9 @@
             day() {
                 return zeroPadding(this.date.getDate(), 2)
             },
-             hour() {
+            hour() {
                 return zeroPadding(this.date.getHours(), 2)
-             },
+            },
             min(){
                 return zeroPadding(this.date.getMinutes(), 2)
             }
