@@ -1,9 +1,8 @@
 <template>
     <div id="ShowSchedule">
-        <h1>いちばんうえだよ</h1>
+
 
         <div class='authentification'>
-            <p>認証ボタンだよ</p>
             <button class="sign" v-if='!authorized' @click="handleAuthClick">ログイン</button>
             <button class="sign" v-if='authorized' @click="handleSignoutClick">ログアウト</button>
         </div>
@@ -11,29 +10,17 @@
         <button class="get" v-if='authorized' @click="getData">更新</button>
 
         <div class="item-container" v-if="authorized && items">
-            <p>aaa</p>
-            <ul>
-                <li v-for="item in items" v-if="item.start.date">
-                    <p>[終日]<b>{{item.summary}}</b></p>
-                </li>
 
 
-                <li v-for="item in items" v-if="item.start.dateTime" >
 
-                    [ {{ isoToTime(item.start.dateTime) }} ~ {{ isoToTime(item.end.dateTime) }} ] <b>{{ item.summary }}</b>
-
-                </li>
-            </ul>
-
-            <div class="task">
-                <div class="task_name column is-three-quarters">hanami</div>
-                <div class="column">
-                    <p class="time">14:30</p>
-                    <p class="time">19:30</p>
+                <div v-for="item in items" v-if="item.start.dateTime"  class="task">
+                    <div class="task_name column is-three-quarters">{{ item.summary }}</div>
+                    <div class="time">
+                        <p>{{ isoToTime(item.start.dateTime) }}</p>
+                        <p>{{ isoToTime(item.end.dateTime) }}</p>
+                    </div>
                 </div>
-            </div>
-
-
+           </div>
         </div>
 
     </div>
@@ -150,23 +137,31 @@
 
 
     .task{
-        background-color: #fbeefc;
-        border-left: 8px solid #c92ad2;
-        color: #c92ad2;
-        margin: 2em 0;
-        padding: 2em;
+      margin:50px;
+      
 
     }
 
     .task_name{
-        font-size: 70px;
+        font-size: 50px;
+        float:left;
+
+
     }
 
     .time{
-        font-size: 45px;
+        font-size: 33px;
+        float:right;
+
+
+
+    }
+    .item-container{
+        margin:10px;
 
     }
     .sign{
+
         font-size:30px;
         border-radius: 10px;
         /*margin-top:650px;*/
@@ -180,5 +175,6 @@
         border-radius: 10px;
         margin-right :50px
     }
+
 
 </style>
