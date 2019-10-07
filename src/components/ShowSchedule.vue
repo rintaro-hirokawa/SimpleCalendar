@@ -14,7 +14,7 @@
 
 
                 <div v-for="item in items" v-if="item.start.dateTime"  class="task">
-                    <div class="task_name column is-three-quarters">{{ item.summary }}</div>
+                    <div class="task_name column is-three-quarters"><input type="checkbox" class="checkbox" value="1" checked="checked">{{ item.summary }}</div>
                     <div class="time">
                         <p>{{ isoToTime(item.start.dateTime) }}</p>
                         <p>{{ isoToTime(item.end.dateTime) }}</p>
@@ -161,20 +161,40 @@
 
     }
     .sign{
-
-        font-size:30px;
-        border-radius: 10px;
-        /*margin-top:650px;*/
-
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        color: #67c5ff;
+        border: dashed 1px #67c5ff;
+        border-radius: 3px;
+        transition: .4s;
+        border-style: dotted;
+        margin:3px;
     }
+
+
+
+
+
+
+
     .get{
-        font-size:30px;
-        /*float:left;*/
-
-        /*margin-top:650px;*/
-        border-radius: 10px;
-        margin-right :50px
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        color: #67c5ff;
+        border: dashed 1px #67c5ff;
+        border-radius: 3px;
+        transition: .4s;
+        margin:3px;
+        border-style: dotted;
     }
 
+    .checkbox {
+        display: table-cell;
+        margin:10px;
+        padding:3px;
+
+    }
 
 </style>

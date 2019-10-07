@@ -1,7 +1,8 @@
 <template>
     <div id="ShowDate">
         <p><span class="mid1">{{ year }}年</span></p>
-    <p><span class="large">{{ month }}</span>月<span class="large">{{ day }}</span>日</p>
+    <p class="date"><span class="large">{{ month }}</span>月<span class="large">{{ day }}</span>日</p>
+
         <p><span class="mid2">{{ week }}曜日</span></p>
         <p><span class="mid3">{{hour}}:{{min}}</span></p>
     </div>
@@ -76,8 +77,9 @@ p{
 
 }
 
-.mid3{
-    font-size:80px;
+.mid3 {
+    font-size: 80px;
     padding-left: 180px;
 }
+
 </style>
