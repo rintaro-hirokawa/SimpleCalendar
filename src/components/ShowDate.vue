@@ -63,8 +63,10 @@ p{
     font-size: 50px;
     font-family: "Bookman Old Style";
 }
+
 .large {
     font-size: 200px;
+    text-shadow: 0 0 2px white;
 }
 
 .mid1{
