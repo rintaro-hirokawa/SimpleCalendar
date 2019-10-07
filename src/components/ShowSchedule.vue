@@ -11,18 +11,26 @@
 
         <div class="item-container" v-if="authorized && items">
 
+            <div v-for="item in items" v-if="item.start.date" class="task">
+                <div class="task_name a_task">
+                    {{ item.summary }}
+                </div>
+            </div>
 
-
-                <div v-for="item in items" v-if="item.start.dateTime"  class="task">
-                    <div class="task_name column is-three-quarters"><input type="checkbox" class="checkbox" value="1" checked="checked">{{ item.summary }}</div>
-                    <div class="time">
+            <div v-for="item in items" v-if="item.start.dateTime"  class="task">
+                <div class="a_task columns">
+                    <div class="task_name column is-three-quarters">
+                        <!--                    <input type="checkbox" class="checkbox" value="1" checked="checked">-->
+                        {{ item.summary }}
+                    </div>
+                    <div class="time column">
                         <p>{{ isoToTime(item.start.dateTime) }}</p>
                         <p>{{ isoToTime(item.end.dateTime) }}</p>
                     </div>
                 </div>
-           </div>
-        </div>
 
+            </div>
+        </div>
     </div>
 
 </template>
@@ -136,22 +144,29 @@
 
 
 
-    .task{
-      margin:50px;
-      
+    .a_task{
+        margin:50px;
+        /*padding: 0.5em 1em;*/
+        color: #232323;
+        background: #fff8e8;
+        border-left: solid 10px #ffc06e;
+        height: 250px;
+
+
 
     }
 
     .task_name{
         font-size: 50px;
-        float:left;
+        /*float:left;*/
+        vertical-align: middle;
 
 
     }
 
     .time{
         font-size: 33px;
-        float:right;
+        /*float:right;*/
 
 
 
