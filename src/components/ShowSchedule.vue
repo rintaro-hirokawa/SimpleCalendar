@@ -41,6 +41,8 @@
     const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
 
+
+
     export default {
         name: 'ShowSchedule',
 
@@ -50,7 +52,7 @@
                 authorized: false,
                 // isoDate: new RegExp('\\d{4}-\\d{2}-\\d{2}T(\\d{2}:\\d{2}):\\d{2}.+', 'g'),
                 items: null,
-                // timerObj: null,
+                timerObj: null,
             }
         },
 
@@ -83,8 +85,10 @@
             handleAuthClick: function (event) {
                 Promise.resolve(this.api.auth2.getAuthInstance().signIn())
                     .then(_ => {
-                        this.authorized = true;
+                        this.authorized = true
                     });
+                this.getData();
+                this.timerObj = setInterval(this.getData, 5000)
             },
 
 
@@ -92,6 +96,7 @@
                 Promise.resolve(this.api.auth2.getAuthInstance().signOut())
                     .then(_ => {
                         this.authorized = false;
+                        clearInterval(this.timerObj)
                     });
             },
 
