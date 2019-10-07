@@ -6,11 +6,11 @@
 
   <div id="app">
     <div class="columns">
-      <div class="column">
+      <div class="column1">
         <ShowDate/>
       </div>
 
-      <div class="column">
+      <div class="column2">
         <ShowSchedule/>
       </div>
 
@@ -45,5 +45,9 @@ export default {
   /*text-align: center;*/
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.column1{
+
 }
 </style>

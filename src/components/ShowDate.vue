@@ -1,5 +1,5 @@
 <template>
-    <div id="ShowDate">
+    <div class="ShowDate">
         <p><span class="mid1">{{ year }}年</span></p>
     <p class="date"><span class="large">{{ month }}</span>月<span class="large">{{ day }}</span>日</p>
 
@@ -61,7 +61,7 @@
 <style scoped>
 p{
     font-size: 50px;
-    font-family: "Bookman Old Style";
+    font-family:OCRB;
 }
 
 .large {
@@ -82,6 +82,9 @@ p{
 .mid3 {
     font-size: 80px;
     padding-left: 180px;
+}
+.ShowDate{
+
 }
 
 </style>
