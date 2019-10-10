@@ -1,10 +1,10 @@
 <template>
     <div class="ShowDate">
-        <p><span class="mid1">{{ year }}年</span></p>
+        <p><span class="is-centered">{{ year }}</span></p>
     <p class="date"><span class="large">{{ month }}</span>月<span class="large">{{ day }}</span>日</p>
 
-        <p><span class="mid2">{{ week }}曜日</span></p>
-        <p><span class="mid3">{{hour}}:{{min}}</span></p>
+        <p><span class="container">{{ week }}曜日</span></p>
+        <p><span class="mid3 ">{{hour}}:{{min}}</span></p>
     </div>
 </template>
 
@@ -60,28 +60,31 @@
 
 <style scoped>
 p{
-    font-size: 50px;
+    font-size: 45px;
     font-family:OCRB;
+    text-align: center;
+    vertical-align: middle;
+
 }
 
 .large {
-    font-size: 200px;
+    font-size: 150px;
     text-shadow: 0 0 2px white;
 }
 
 .mid1{
-    padding-left: 200px;
+
 
 }
 .mid2{
-    padding-left: 200px;
+
 
 
 }
 
 .mid3 {
     font-size: 80px;
-    padding-left: 180px;
+
 }
 .ShowDate{
 

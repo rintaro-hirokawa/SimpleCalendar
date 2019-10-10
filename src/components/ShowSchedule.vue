@@ -24,8 +24,8 @@
                         {{ item.summary }}
                     </div>
                     <div class="time column">
-                        <p>{{ isoToTime(item.start.dateTime) }}<span class="time2">から</span></p>
-                        <p>{{ isoToTime(item.end.dateTime) }}<span class="time2">まで</span></p>
+                        <p>{{ isoToTime(item.start.dateTime) }}<span class="time2"></span></p>
+                        <p>{{ isoToTime(item.end.dateTime) }}<span class="time2"></span></p>
                     </div>
                 </div>
             </div>
@@ -121,21 +121,21 @@
 <style scoped>
     .a_task{
         margin:50px;
-        /*padding: 0.5em 1em;*/
         color: #232323;
         background-color:lightblue;
         border-left: solid 10px cornflowerblue;
-        border-radius: 4px;
+        border-radius: 10px;
         height: 150px;
+        width:500px
     }
+
+
     .task_name{
-        font-size: 50px;
-        /*float:left;*/
+        font-size: 40px;
         vertical-align: middle;
     }
     .time{
-        font-size: 30px;
-        float:right;
+        font-size: 40px;
     }
     .item-container{
         margin:10px;
@@ -159,10 +159,8 @@
         display: inline-block;
         padding: 0.5em 1em;
         text-decoration: none;
-
         transition: .4s;
         margin:3px;
-
         background: #668ad8;
         color: #FFF;
         border-radius: 4px;
